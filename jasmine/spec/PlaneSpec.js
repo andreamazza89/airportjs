@@ -27,4 +27,9 @@ describe('Plane',function(){
     weather.isStormy = jasmine.createSpy().and.returnValue(true);
     expect(function() { plane.land(airport) }).toThrow(new Error('Too stormy to land'));
   });
+
+  it('cannot takeoff from an airport if Weather is stormy', function(){
+    weather.isStormy = jasmine.createSpy().and.returnValue(true);
+    expect(function() { plane.takeOff() }).toThrow(new Error('Too stormy to take off'));
+  });
 });

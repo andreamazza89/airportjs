@@ -39,10 +39,11 @@ describe('Feature Test:', function() {
       expect(function() { plane.land(airport) }).toThrow(new Error('Too stormy to land'));
     })
 
-    xit('planes cannot takeoff if weather is stormy', function(){
+    it('planes cannot takeoff if weather is stormy', function(){
+      Math.random = function() { return 0; }
       plane.land(airport);
-      plane.takeOff();
-      expect(airport.planes()).not.toContain(plane);
+      Math.random = function() { return 3; }
+      expect(function() { plane.takeOff(); }).toThrow(new Error('Too stormy to take off'));
     })
 
   });
